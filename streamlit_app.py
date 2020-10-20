@@ -29,7 +29,7 @@ input = st.text_input("Tell me something", "Cantami o Diva")
 #  st.write(f.read())
 #st.write("Streamlit is fabulous")
 
-st.line_chart(df[-1])
+st.line_chart(df['total'])
 
 #st.write("Hello Corey, this is the demo!")
 #st.balloons()
