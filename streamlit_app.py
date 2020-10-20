@@ -7,8 +7,8 @@ if st.checkbox('checkbox'):
 
 st.write(st.__version__)
     
-df = pd.DataFrame()
-df.read_csv("exam1stats.csv")
+#df = pd.DataFrame()
+df = pd.read_csv("exam1stats.csv")
 #st.write(df)
 st.write('exam scores actually')
 #st.write(tzlocal.get_localzone())
