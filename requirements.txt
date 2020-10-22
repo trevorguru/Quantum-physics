@@ -1,5 +1,5 @@
 streamlit==0.62.1
 pandas
 tzlocal
-matplotlib          3.3.2
+matplotlib==3.3.2
 numpy
