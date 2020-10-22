@@ -33,6 +33,7 @@ num_bins = st.slider("Pick a number of bins", 5, 35, 20)
 #st.write("Streamlit is fabulous")
 #st.bar_chart(df['total'])
 
+fig = plt.figure()
 df['total'].hist(bins=num_bins)
 plt.xlabel("score [%]")
 plt.ylabel("count")
@@ -46,13 +47,25 @@ st.write("Standard deviation is", std)
 #st.balloons()
 #print("this is a log line")
 
+
+st.write("==================================================")
 st.write("Finite square well")
 
-x = np.arange(0,10,100)
-y = np.tan(x)
-y2 = x
-plt.plot(y,x)
-plt.plot(y2,x)
-#plt.show()
+V0 = st.slider("Choose your well potential:", 0, 100, 30)
+
+fig = plt.figure()
+x = np.arange(0,np.pi*3,0.01)
+x = list(x) #plt.plot() DOES NOT like np.arange for some reason
+#V0 = 1
+x0 = np.sqrt(V0)
+y = np.tan(x); y=list(y)
+y2 = np.sqrt(np.power(x0,2) - np.power(x,2))/x
+y2 = list(y2)
+plt.plot(x,y,c='blue',linewidth=2,linestyle='dashed')
+plt.plot(x,y2,c='orange')
+plt.ylim(0,50)
+plt.xlabel("$xi$")
+plt.ylabel("tan($xi$),($xi_0^2$-$xi^2$)$^{0.5}$/$xi$")
+plt.show()
 st.pyplot()
 
