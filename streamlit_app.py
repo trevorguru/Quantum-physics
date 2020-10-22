@@ -3,6 +3,9 @@ import tzlocal
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib
+#matplotlib.use('TKAgg',warn=False, force=True)
+#import tkinter
 
 if st.checkbox('checkbox'):
     st.image("foo.jpg")
@@ -42,3 +45,14 @@ st.write('Mean score is', mean)
 st.write("Standard deviation is", std)
 #st.balloons()
 #print("this is a log line")
+
+st.write("Finite square well")
+
+x = np.arange(0,10,100)
+y = np.tan(x)
+y2 = x
+plt.plot(y,x)
+plt.plot(y2,x)
+#plt.show()
+st.pyplot()
+
