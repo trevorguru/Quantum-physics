@@ -14,17 +14,14 @@ if st.checkbox('checkbox'):
     
 #df = pd.DataFrame()
 df = pd.read_csv("exam1stats.csv")
+df2 = pd.read_csv("exam2stats.csv")
 #st.write(df)
-#st.write('exam scores actually')
-#st.write(tzlocal.get_localzone())
 
 st.title("Quantum Physics 1")
 
 st.write("Exam 1 scores")
-
 #file_obj = st.sidebar.file_uploader('Choose an image:', ('jpg', 'jpeg'))
-
-num_bins = st.slider("Pick a number of bins", 5, 35, 20)
+num_bins = st.slider("Pick a number of bins", 5, 35, 20,key='exam1')
 
 #st.write(value)
 #input = st.text_input("Tell me something", "Cantami o Diva")
@@ -38,15 +35,92 @@ df['total'].hist(bins=num_bins)
 plt.xlabel("score [%]")
 plt.ylabel("count")
 plt.show()
-st.pyplot()
+st.pyplot(fig)
 mean = np.mean(df['total'])
 std = np.std(df['total'])
 
 st.write('Mean score is', mean)
 st.write("Standard deviation is", std)
-#st.balloons()
-#print("this is a log line")
+st.write("==================================================")
 
+
+st.write("Exam 2 scores")
+num_bins2 = st.slider("Pick a number of bins", 5, 35, 20, key='exam2')
+
+fig2 = plt.figure()
+exam2_total = np.sum(df2, axis=1)
+
+#st.write("total cal",exam2_total.shape)
+#st.write(exam2_total)
+df2['total'] = exam2_total
+
+df2['total'].hist(bins=num_bins2)
+plt.xlabel("score [%]")
+plt.ylabel("count")
+plt.show()
+st.pyplot(fig2)
+mean2 = np.mean(df2['total'])
+std2 = np.std(df2['total'])
+
+st.write('Mean score is', mean2)
+st.write("Standard deviation is", std2)
+
+#plt.subplot(4,2,1)
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+
+fig = make_subplots(
+    rows=2, cols=2,
+    #shared_xaxes=True,
+    #vertical_spacing=0.03,
+    #specs=[[{"type": "histogram"}],
+    #       [{"type": "histogram"}],
+    #       [{"type": "histogram"}],
+    #       [{"type": "histogram"}]]
+)
+
+fig.add_trace(
+    go.Histogram(
+        x=df2["Q1"],
+        nbinsx=num_bins2,
+        name="Exam2_Q1"
+    ),
+    row=1, col=1
+)
+
+fig.add_trace(
+    go.Histogram(
+        x=df2["Q2"],
+        nbinsx=num_bins2,
+        name="Exam2_Q2"
+    ),
+    row=1, col=2
+)
+
+fig.add_trace(
+    go.Histogram(
+        x=df2["Q3"],
+        nbinsx=num_bins2,
+        name="Exam2_Q3"
+    ),
+    row=2, col=1
+)
+
+fig.add_trace(
+    go.Histogram(
+        x=df2["Q4"],
+        nbinsx=num_bins2,
+        name="Exam2_Q4"
+    ),
+    row=2, col=2
+)
+
+
+
+#fig.show()
+#st.pyplot(fig)
+st.plotly_chart(fig)
 
 st.write("==================================================")
 st.write("Finite square well")
@@ -67,5 +141,5 @@ plt.ylim(0,50)
 plt.xlabel("$xi$")
 plt.ylabel("tan($xi$),($xi_0^2$-$xi^2$)$^{0.5}$/$xi$")
 plt.show()
-st.pyplot()
+st.pyplot(fig)
 

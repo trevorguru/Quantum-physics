@@ -3,3 +3,4 @@ pandas
 tzlocal
 matplotlib==3.3.2
 numpy
+plotly==4.13.0
